@@ -1,0 +1,179 @@
+哈哈  你好啊啊 阿飛發順豐到付 是反對犯得上發順豐 
+对方水电费
+
+要使用一个类，就要先把它加载到虚拟机中，生成一个Class对象。这个class对象就保存了这个类的一切信息。
+
+    反射机制的实现，就是获取这个Class对象，通过Class对象去访问类、对象的元数据以及运行时的数据。
+
+    有三种方法获得类的Class对象：Class.forName(String className)、className.class、实例对象.getClass()；
+
+Classfile /E:/ideaSpace/MyJava/javaBase/target/classes/com/china/test/Class/ClassDemo.class
+  Last modified 2020-2-24; size 1209 bytes
+  MD5 checksum a4cb706d77debd72a05d9bebbeb91515
+  Compiled from "ClassDemo.java"
+public class com.china.test.Class.ClassDemo
+  minor version: 0
+  major version: 52
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+   #1 = Methodref          #16.#37        // java/lang/Object."<init>":()V
+   #2 = Fieldref           #15.#38        // com/china/test/Class/ClassDemo.name:Ljava/lang/String;
+   #3 = Fieldref           #15.#39        // com/china/test/Class/ClassDemo.age:I
+   #4 = Fieldref           #40.#41        // java/lang/System.out:Ljava/io/PrintStream;
+   #5 = Class              #42            // java/lang/StringBuilder
+   #6 = Methodref          #5.#37         // java/lang/StringBuilder."<init>":()V
+   #7 = String             #43            // Hello :
+   #8 = Methodref          #5.#44         // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #9 = Methodref          #5.#45         // java/lang/StringBuilder.toString:()Ljava/lang/String;
+  #10 = Methodref          #46.#47        // java/io/PrintStream.println:(Ljava/lang/String;)V
+  #11 = String             #48            // age :
+  #12 = Methodref          #5.#49         // java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+  #13 = String             #50            // My Class Static Init....
+  #14 = Fieldref           #15.#51        // com/china/test/Class/ClassDemo.data:Ljava/lang/String;
+  #15 = Class              #52            // com/china/test/Class/ClassDemo
+  #16 = Class              #53            // java/lang/Object
+  #17 = Utf8               name
+  #18 = Utf8               Ljava/lang/String;
+  #19 = Utf8               age
+  #20 = Utf8               I
+  #21 = Utf8               data
+  #22 = Utf8               <init>
+  #23 = Utf8               (Ljava/lang/String;I)V
+  #24 = Utf8               Code
+  #25 = Utf8               LineNumberTable
+  #26 = Utf8               LocalVariableTable
+  #27 = Utf8               this
+  #28 = Utf8               Lcom/china/test/Class/ClassDemo;
+  #29 = Utf8               ()V
+  #30 = Utf8               hello
+  #31 = Utf8               (Ljava/lang/String;)Ljava/lang/String;
+  #32 = Utf8               <clinit>
+  #33 = Utf8               SourceFile
+  #34 = Utf8               ClassDemo.java
+  #35 = Utf8               RuntimeInvisibleAnnotations
+  #36 = Utf8               Lcom/china/test/Class/TestAnno;
+  #37 = NameAndType        #22:#29        // "<init>":()V
+  #38 = NameAndType        #17:#18        // name:Ljava/lang/String;
+  #39 = NameAndType        #19:#20        // age:I
+  #40 = Class              #54            // java/lang/System
+  #41 = NameAndType        #55:#56        // out:Ljava/io/PrintStream;
+  #42 = Utf8               java/lang/StringBuilder
+  #43 = Utf8               Hello :
+  #44 = NameAndType        #57:#58        // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #45 = NameAndType        #59:#60        // toString:()Ljava/lang/String;
+  #46 = Class              #61            // java/io/PrintStream
+  #47 = NameAndType        #62:#63        // println:(Ljava/lang/String;)V
+  #48 = Utf8               age :
+  #49 = NameAndType        #57:#64        // append:(I)Ljava/lang/StringBuilder;
+  #50 = Utf8               My Class Static Init....
+  #51 = NameAndType        #21:#18        // data:Ljava/lang/String;
+  #52 = Utf8               com/china/test/Class/ClassDemo
+  #53 = Utf8               java/lang/Object
+  #54 = Utf8               java/lang/System
+  #55 = Utf8               out
+  #56 = Utf8               Ljava/io/PrintStream;
+  #57 = Utf8               append
+  #58 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+  #59 = Utf8               toString
+  #60 = Utf8               ()Ljava/lang/String;
+  #61 = Utf8               java/io/PrintStream
+  #62 = Utf8               println
+  #63 = Utf8               (Ljava/lang/String;)V
+  #64 = Utf8               (I)Ljava/lang/StringBuilder;
+{
+  public int age;
+    descriptor: I
+    flags: ACC_PUBLIC
+
+  public com.china.test.Class.ClassDemo(java.lang.String, int);
+    descriptor: (Ljava/lang/String;I)V
+    flags: ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=3
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: aload_0
+         5: aload_1
+         6: putfield      #2                  // Field name:Ljava/lang/String;
+         9: aload_0
+        10: iload_2
+        11: putfield      #3                  // Field age:I
+        14: return
+      LineNumberTable:
+        line 15: 0
+        line 16: 4
+        line 17: 9
+        line 18: 14
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      15     0  this   Lcom/china/test/Class/ClassDemo;
+            0      15     1  name   Ljava/lang/String;
+            0      15     2   age   I
+
+  public com.china.test.Class.ClassDemo();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 20: 0
+        line 21: 4
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lcom/china/test/Class/ClassDemo;
+
+  public java.lang.String hello(java.lang.String);
+    descriptor: (Ljava/lang/String;)Ljava/lang/String;
+    flags: ACC_PUBLIC
+    Code:
+      stack=3, locals=2, args_size=2
+         0: getstatic     #4                  // Field java/lang/System.out:Ljava/io/PrintStream;
+         3: new           #5                  // class java/lang/StringBuilder
+         6: dup
+         7: invokespecial #6                  // Method java/lang/StringBuilder."<init>":()V
+        10: ldc           #7                  // String Hello :
+        12: invokevirtual #8                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        15: aload_1
+        16: invokevirtual #8                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        19: invokevirtual #9                  // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        22: invokevirtual #10                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+        25: getstatic     #4                  // Field java/lang/System.out:Ljava/io/PrintStream;
+        28: new           #5                  // class java/lang/StringBuilder
+        31: dup
+        32: invokespecial #6                  // Method java/lang/StringBuilder."<init>":()V
+        35: ldc           #11                 // String age :
+        37: invokevirtual #8                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        40: aload_0
+        41: getfield      #3                  // Field age:I
+        44: invokevirtual #12                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+        47: invokevirtual #9                  // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        50: invokevirtual #10                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+        53: aload_1
+        54: areturn
+      LineNumberTable:
+        line 24: 0
+        line 25: 25
+        line 26: 53
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      55     0  this   Lcom/china/test/Class/ClassDemo;
+            0      55     1  name   Ljava/lang/String;
+
+  static {};
+    descriptor: ()V
+    flags: ACC_STATIC
+    Code:
+      stack=1, locals=0, args_size=0
+         0: ldc           #13                 // String My Class Static Init....
+         2: putstatic     #14                 // Field data:Ljava/lang/String;
+         5: return
+      LineNumberTable:
+        line 12: 0
+        line 13: 5
+}
+SourceFile: "ClassDemo.java"
+RuntimeInvisibleAnnotations:
+  0: #36()
