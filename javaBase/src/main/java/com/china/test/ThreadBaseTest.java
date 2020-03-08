@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.lang.management.*;
+import java.math.BigDecimal;
 import java.util.Properties;
 
 /**
@@ -54,5 +55,11 @@ public class ThreadBaseTest
             e.printStackTrace();
         }
         System.out.println("runtime : " + JSON.toJSONString(runtime));
+    }
+
+    @Test
+    public void testNum(){
+        String value = new BigDecimal("11.010").stripTrailingZeros().toPlainString();
+        System.out.println("value: " + value);
     }
 }
