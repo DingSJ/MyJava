@@ -44,6 +44,7 @@ public class ForkJoinRecursiveTask {
             }else{
                 int middle = (end + start) / 2;
                 System.out.println("middle: " + middle);
+
                 MyForkJoinRecursiveTask left = new MyForkJoinRecursiveTask(start, middle);
                 MyForkJoinRecursiveTask right = new MyForkJoinRecursiveTask(middle + 1, end);
 
