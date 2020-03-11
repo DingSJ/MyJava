@@ -1,8 +1,13 @@
 package com.china.test.thread;
 
 public class MyThread extends Thread{
-        @Override
+    private int i;
+    public MyThread(int i) {
+        this.i = i;
+    }
+
+    @Override
         public void run() {
-            System.out.println("线程执行了：" + Thread.currentThread().getName());
+            System.out.println("线程执行了：" + i);
         }
     }

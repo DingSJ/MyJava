@@ -5,7 +5,7 @@ package com.china.test.thread;
  * */
 public class ThreadTestMain {
     public static void main(String[] args) {
-        Thread thread = new MyThread();
+        Thread thread = new MyThread(1);
         thread.start();
 
         for (int i = 0; i < 10; i++) {
