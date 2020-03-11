@@ -23,8 +23,14 @@ public class FutureTimeoutTest {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-        }
 
+            /**
+             * 任务取消
+             * */
+            task.cancel(true);
+        }
+        System.out.println(task.isCancelled());
+        System.out.println(task.isDone());
         executorService.shutdown();
     }
 }
