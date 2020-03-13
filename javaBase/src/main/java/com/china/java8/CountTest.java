@@ -19,7 +19,36 @@ public class CountTest {
 
 //        testStreamMap();
 
-        testMaxAndMin();
+//        testMaxAndMin();
+        
+        testStreamReduce();
+    }
+
+    private static void testStreamReduce() {
+        List<Student> students = Stream.of(new Student("AAA",100),
+                new Student("BBB",99), new Student("CCC",105),
+                new Student("DDD",100), new Student("EEE",102)
+        ).collect(Collectors.toList());
+
+        int count = Stream.of(1, 2, 3, 4).reduce(0, (a, b) -> a + b);
+
+        // 对象中属性计算
+        int count1 = students.stream().reduce(new Student("cc",0), (a,b)->new Student("",a.score + b.score)).getScore();
+
+        // 条件过滤
+        int count2 = students.stream().filter(student -> student.getScore() > 100).reduce(new Student("cc",0), (a,b)-> studentScoreAdd(a,b)).getScore();
+
+        // 对象转换再计算
+        /**
+         * sum 为上次计算的结果
+         * element 为本次迭代的元素
+         * */
+        int count3 = students.stream().map(student -> student.getScore()).reduce(0, (sum,element)-> sum + element);
+
+        System.out.println(count);
+        System.out.println(count1);
+        System.out.println(count2);
+        System.out.println(count3);
     }
 
 
@@ -40,12 +69,33 @@ public class CountTest {
         System.out.println("studentMin : " + studentMin);
         System.out.println("stdMin : " + stdMin);
     }
+
+    private static Student studentScoreAdd(Student a, Student b) {
+        return new Student("",a.score+b.score);
+    }
+
     static class Student implements Comparable<Student> {
         private String name;
         private int score;
 
         public Student(String name, int score) {
             this.name = name;
+            this.score = score;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public int getScore() {
+            return score;
+        }
+
+        public void setScore(int score) {
             this.score = score;
         }
 
