@@ -36,7 +36,7 @@ public class AppleFilterTest {
 
     private static void testThread9() {
 
-        System.out.printf("dsafas%d",10);
+        System.out.printf("dsafas%d", 10);
         System.out.println("====");
     }
 
