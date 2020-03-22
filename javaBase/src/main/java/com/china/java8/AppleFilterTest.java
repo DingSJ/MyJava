@@ -10,7 +10,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * 测试 Java7 中的过滤方式
@@ -93,7 +94,9 @@ public class AppleFilterTest {
 
     private static void testListPredict() {
         List<Apple> appleList = buildApples();
-        List<Apple> appWeightFilter= appleList.stream().filter(apple -> apple.weight >= 50).sorted(Apple::compareTo).collect(Collectors.toList());
+
+        // toList() 是一个静态方法
+        List<Apple> appWeightFilter= appleList.stream().filter(apple -> apple.weight >= 50).sorted(Apple::compareTo).collect(toList());
         System.out.println(appWeightFilter);
     }
 
