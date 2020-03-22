@@ -2,10 +2,15 @@ package com.china.java8;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.function.BiPredicate;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * 测试 Java7 中的过滤方式
@@ -14,7 +19,6 @@ public class AppleFilterTest {
 
     public static void main(String[] args) {
         List<Apple> appleList = buildApples();
-
         // 找出绿色（green）的苹果
         testJava7(appleList);
         System.out.println("==========================================");
@@ -32,6 +36,103 @@ public class AppleFilterTest {
         testThread8();
         testThread9();
 
+        System.out.println("Func Test ..... ");
+        testFunction();
+        testThread10();
+        testListPredict();
+        testListBiPredict();
+
+        System.out.println("test Consumer....");
+        testConsumer();
+
+        System.out.println("sort list.....");
+        testCompator();
+    }
+
+    private static void testCompator() {
+        List<Apple> appleList = buildApples();
+        Comparator<Apple> comparator = (o1, o2) -> o1.color.compareTo(o2.color);
+        Comparator<Apple> compColor2 = (o1, o2) -> o1.weight - o2.weight;
+        appleList.sort(comparator);
+//        appleList.sort(Apple::compareTo);
+
+        System.out.println(appleList);
+    }
+
+    private static void testConsumer() {
+        Consumer<String> consumer = System.out::println;
+//        Consumer<String> consumer = str -> System.out.println(str);
+        userConsumer("Hello>>>", consumer);
+    }
+
+    private static<T> void userConsumer(T t, Consumer<T> consumer) {
+        consumer.accept(t);
+        consumer.accept(t);
+        consumer.accept(t);
+    }
+
+
+    private static void testListBiPredict() {
+        System.out.println("Bi predict...");
+        List<Apple> appleList = buildApples();
+        List<Apple> appWeightFilter = appleBiPredict(appleList, (a1,a2) -> a1.weight > a2.weight);
+        System.out.println(appWeightFilter);
+    }
+
+    private static List<Apple> appleBiPredict(List<Apple> appleList, BiPredicate<Apple,Apple> biPredicate) {
+        List<Apple> apples = new ArrayList<>();
+        for (Apple app : apples) {
+            if (biPredicate.test(app, new Apple("A", 60))) {
+                apples.add(app);
+            }
+        }
+        return apples;
+    }
+
+    private static void testListPredict() {
+        List<Apple> appleList = buildApples();
+        List<Apple> appWeightFilter= appleList.stream().filter(apple -> apple.weight >= 50).sorted(Apple::compareTo).collect(Collectors.toList());
+        System.out.println(appWeightFilter);
+    }
+
+    private static void testThread10() {
+        Runnable runnable = () -> System.out.println(".." + Thread.currentThread().getName());
+        runnable.run();
+        process(runnable);
+        process(runnable);
+        process(runnable);
+    }
+
+    private static void process(Runnable runnable) {
+        Thread thread = new Thread(runnable);
+        thread.start();
+    }
+
+    private static void testFunction() {
+        Comparator<Apple> compWeight = new Comparator<Apple>() {
+            @Override
+            public int compare(Apple o1, Apple o2) {
+                return o1.weight - o2.weight;
+            }
+        };
+        Comparator<Apple> compColor = new Comparator<Apple>() {
+            @Override
+            public int compare(Apple o1, Apple o2) {
+                return o1.weight - o2.weight;
+            }
+        };
+        Comparator<Apple> compColor2 = (o1, o2) -> o1.weight - o2.weight;
+
+        Function<String, Integer> fun = o1 -> o1.length();
+        int length = fun.apply("asdfdsfsdf");
+        System.out.println(length);
+
+        int compare = compColor.compare(new Apple("AA", 100), new Apple("BB", 99));
+        System.out.println("Compapre: " + compare);
+
+        List<Apple> appleList = buildApples();
+        Apple apple = appleList.stream().min(compColor).get();
+        System.out.println("Apple: " + apple);
     }
 
     private static void testThread9() {
