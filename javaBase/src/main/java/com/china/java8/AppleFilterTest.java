@@ -56,6 +56,8 @@ public class AppleFilterTest {
         appleList.sort(comparator);
 //        appleList.sort(Apple::compareTo);
 
+
+        appleList.sort(Comparator.comparing(Apple::getColor));
         System.out.println(appleList);
     }
 
