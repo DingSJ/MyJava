@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toList;
 
@@ -48,6 +49,16 @@ public class AppleFilterTest {
 
         System.out.println("sort list.....");
         testCompator();
+
+        System.out.println("CCCCCCCCCCCCCCCCCCCCC");
+
+        testSortTest();
+    }
+
+    private static void testSortTest() {
+        int[] iArr = {1,4,2,5,7,4,2,7,9};
+        IntStream sorted = Arrays.stream(iArr).sorted().filter(i -> i > 5);
+        sorted.forEach(System.out::println);
     }
 
     private static void testCompator() {
