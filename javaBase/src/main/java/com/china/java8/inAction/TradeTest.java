@@ -1,7 +1,6 @@
 package com.china.java8.inAction;
 
 import java.util.*;
-import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
@@ -32,6 +31,9 @@ public class TradeTest {
                 new Transaction(mario, 2012, 700),
                 new Transaction(alan, 2012, 950)
         );
+
+        // (0) 数据过滤
+        testFun0(transactions);
 
         // (1) 找出2011年发生的所有交易，并按交易额排序（从低到高）。
         testFun1(transactions);
@@ -79,6 +81,13 @@ public class TradeTest {
 
         // test sum
         testFun15();
+
+    }
+
+    private static void testFun0(List<Transaction> transactions) {
+        System.out.println("transactions : " + transactions);
+        List<Transaction> collect = transactions.stream().filter(transaction -> transaction.getYear() == 2011).collect(toList());
+        System.out.println("collect : " + collect);
 
     }
 
