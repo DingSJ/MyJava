@@ -1,10 +1,9 @@
-package com.china.strategy;
+package com.china.designPattern.strategy;
 
 
-import java.util.function.Consumer;
-import java.util.function.Function;
+import java.util.function.Supplier;
 
-public class Good2 {
+public class Good3 {
     private String name;
     private double price;
 
@@ -34,14 +33,14 @@ public class Good2 {
         this.price = price;
     }
 
-    public Good2(String name, double price) {
+    public Good3(String name, double price) {
         this.name = name;
         this.price = price;
     }
 
-    public Good2(String name, double price, Function<Double,Double> function) {
+    public Good3(String name, double price, Supplier<Double> supplier) {
         this.name = name;
-        this.price = function.apply(price);
+        this.price = price * supplier.get();
     }
 
     @Override

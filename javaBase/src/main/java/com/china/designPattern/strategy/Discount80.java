@@ -1,4 +1,4 @@
-package com.china.strategy;
+package com.china.designPattern.strategy;
 
 public class Discount80 implements Discount {
     @Override

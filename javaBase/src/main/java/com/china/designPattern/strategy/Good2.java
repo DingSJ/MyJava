@@ -1,6 +1,9 @@
-package com.china.strategy;
+package com.china.designPattern.strategy;
 
-public class Good {
+
+import java.util.function.Function;
+
+public class Good2 {
     private String name;
     private double price;
 
@@ -30,15 +33,14 @@ public class Good {
         this.price = price;
     }
 
-    public Good(String name, double price) {
+    public Good2(String name, double price) {
         this.name = name;
         this.price = price;
     }
 
-    public Good(String name, double price, Discount discount) {
+    public Good2(String name, double price, Function<Double,Double> function) {
         this.name = name;
-        this.discount = discount;
-        this.price = price;
+        this.price = function.apply(price);
     }
 
     @Override

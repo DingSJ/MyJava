@@ -1,4 +1,4 @@
-package com.china.strategy;
+package com.china.designPattern.strategy;
 
 /**
  * 商品折扣 ，策略模式实现 打八折，打五折，不打折

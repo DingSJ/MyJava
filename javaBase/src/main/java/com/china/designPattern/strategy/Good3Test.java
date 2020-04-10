@@ -1,4 +1,4 @@
-package com.china.strategy;
+package com.china.designPattern.strategy;
 
 public class Good3Test {
     public static void main(String[] args) {
