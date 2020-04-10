@@ -13,7 +13,7 @@ public class FutureInterruptTest {
             return 1;
         });
 
-        // 打算 Main 线程
+        // 打算 StaticMain 线程
         Thread currThread = Thread.currentThread();
         new Thread(()->{
             try {

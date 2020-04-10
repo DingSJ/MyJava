@@ -24,8 +24,8 @@ public class ThreadlocalTest {
             }
         }).start();
 
-        SystemContext.getSystemContext().getContext().setValue("Main");
+        SystemContext.getSystemContext().getContext().setValue("StaticMain");
 
-        System.out.println("Main: " + SystemContext.getSystemContext().getContext());
+        System.out.println("StaticMain: " + SystemContext.getSystemContext().getContext());
     }
 }

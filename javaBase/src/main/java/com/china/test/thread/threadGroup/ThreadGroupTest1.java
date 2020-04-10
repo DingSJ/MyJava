@@ -63,7 +63,7 @@ public class ThreadGroupTest1 {
                 try {
                     t.join();
                 } catch (InterruptedException e) {
-                    System.out.println(currentThread() + "， Task Interrupted By Main Thread");
+                    System.out.println(currentThread() + "， Task Interrupted By StaticMain Thread");
                     e.printStackTrace();
                 }
             }
@@ -94,7 +94,7 @@ public class ThreadGroupTest1 {
                 try {
                     t.join();
                 } catch (InterruptedException e) {
-                    System.out.println(currentThread() + "， Task Interrupted By Main Thread");
+                    System.out.println(currentThread() + "， Task Interrupted By StaticMain Thread");
 //                    e.printStackTrace();
                 }
             }
@@ -106,7 +106,7 @@ public class ThreadGroupTest1 {
 //            t2.interrupt();
             threadGroup2.interrupt();
         } catch (InterruptedException e) {
-            System.out.println("Main 捕获到异常");
+            System.out.println("StaticMain 捕获到异常");
         }
 
         try {

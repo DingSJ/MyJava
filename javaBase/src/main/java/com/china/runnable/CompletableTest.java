@@ -38,7 +38,7 @@ public class CompletableTest {
             System.out.println("Throw Exception : " + thr.getMessage());
         });
 
-        System.out.println("Main execute ... ");
+        System.out.println("StaticMain execute ... ");
 
         // 1
 //        Thread.currentThread().join();

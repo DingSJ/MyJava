@@ -48,7 +48,7 @@ public class CountDownLatchTest {
         try {
 //            cyclicBarrier.await(5, TimeUnit.SECONDS);
             countDownLatch.await();
-            System.out.println("Main over !");
+            System.out.println("StaticMain over !");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
