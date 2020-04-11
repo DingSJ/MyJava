@@ -1,0 +1,253 @@
+享元模式是对象的结构模式。享元模式以共享的方式高效地支持大量的细粒度对象。
+也就是说在一个系统中如果有多个相同的对象，那么只共享一份就可以了，不必每个都去实例化一个对象。
+
+String类型就是使用了享元模式
+String对象是final类型，对象一旦创建就不可改变。
+在JAVA中字符串常量 都是存在常量池中的，JAVA会确保一个字符串常量在常量池中只有一个拷贝
+
+享元模式采用一个共享来避免大量拥有相同内容对象的开销。
+
+这种开销最常见、最直观的就是内存的损耗。
+享元对象能做到共享的关键是区分内蕴状态(Internal State)和外蕴状态(ExternalState)。
+一个内蕴状态是存储在享元对象内部的，并且是不会随环境的改变而有所不同。
+因此，一个享元可以具有内蕴状态并可以共享。
+一个外蕴状态是随环境的改变而改变的、不可以共享的。享元对象的外蕴状态必须由客户端保存，
+并在享元对象被创建之后，在需要使用的时候再传入到享元对象内部。
+外蕴状态不可以影响享元对象的内蕴状态，它们是相互独立的。
+
+享元模式可以分成单纯享元模式和复合享元模式两种形式。
+单纯享元模式　　
+	在单纯的享元模式中，所有的享元对象都是可以共享的。
+复合享元模式
+
+
+抽象享元(Flyweight)角色 ：给出一个抽象接口，以规定出所有具体享元角色需要实现的方法。
+
+具体享元(ConcreteFlyweight)角色：实现抽象享元角色所规定出的接口。如果有内蕴状态的话，必须负责为内蕴状态提供存储空间。
+
+享元工厂(FlyweightFactory)角色 ：本角色负责创建和管理享元角色。本角色必须保证享元对象可以被系统适当地共享。
+当一个客户端对象调用一个享元对象的时候，享元工厂角色会检查系统中是否 已经有一个符合要求的享元对象。
+如果已经有了，享元工厂角色就应当提供这个已有的享元对象；如果系统中没有一个适当的享元对象的话，
+享元工厂角色就应当创建一个合适的享元对象。
+
+//抽象享元角色类
+public interface Flyweight {
+     //一个示意性方法，参数state是外蕴状态
+    public void operation(String state);
+}
+
+//具体享元角色类
+public class ConcreteFlyweight implements Flyweight {
+    private String intrinsicState = null;//内蕴状态
+    /**
+     * 构造函数，内蕴状态作为参数传入
+     *
+     * @param intrinsicState
+     */
+    public ConcreteFlyweight(String intrinsicState) {
+        this.intrinsicState = intrinsicState;
+    }
+
+    /**
+     * 外蕴状态作为参数传入方法中，改变方法的行为， 但是并不改变对象的内蕴状态。
+     */
+    @Override
+    public void operation(String state) {
+        System.out.println("内蕴状态= " + this.intrinsicState);
+        System.out.println("外蕴状态 = " + state);
+    }
+
+}
+
+//享元工厂角色类
+public class FlyweightFactory {
+    // 一个用来存所有享元对象的集合 String表示对象的键的类型 ->内蕴状态 ;Flyweight表示对象值的类型
+    private Map<String, Flyweight> files = new HashMap<String, Flyweight>();
+
+    public Flyweight factory(String intrinsicState) {
+        // 先从缓存中查找对象
+        Flyweight fly = files.get(intrinsicState);
+        if (fly == null) {
+            // 如果对象不存在则创建一个新的Flyweight对象
+            fly = new ConcreteFlyweight(intrinsicState);
+            // 把这个新的Flyweight对象添加到缓存中
+            files.put(intrinsicState, fly);
+        }
+        return fly;
+    }
+    //得到存对象的集合的长度
+    public int getFlyWeightSize() {
+        return files.size();
+    }
+}
+
+
+public class Client {
+
+    public static void main(String[] args) {
+        FlyweightFactory factory = new FlyweightFactory();
+        Flyweight fly1 = factory.factory(new String("辣椒炒肉"));
+        fly1.operation("汤高点菜");
+
+        Flyweight fly2 = factory.factory(new String("牛肉"));
+        fly2.operation("Zhang_Test");
+
+        Flyweight fly3 = factory.factory(new String("辣椒炒肉"));
+        fly3.operation("汤高点菜");
+
+        System.out.println(fly1==fly3);
+        System.out.println("被点不同的菜的个数"+factory.getFlyWeightSize());
+    }
+}
+
+复合享元模式
+	将一些单纯享元使用合成模式加以复合，形成复合享元对象。这样的复合享元对象本身不能共享，但是它们可以分解成单纯享元对象，而后者则可以共享。
+
+//抽象享元角色类
+public interface Flyweight {
+     //一个示意性方法，参数state是外蕴状态
+    public void operation(String state);
+}
+角色如下：
+抽象享元(Flyweight)角色 ：给出一个抽象接口，以规定出所有具体享元角色需要实现的方法。
+　　
+复合享元(ConcreteCompositeFlyweight)角色 ：复合享元角色所代表的对象是不可以共享的，但是一个复合享元对象可以分解成为多个本身是单纯享元对象的组合。复合享元角色又称作不可共享的享元对象。
+　　
+享元工厂(FlyweightFactory)角色 ：本角 色负责创建和管理享元角色。本角色必须保证享元对象可以被系统适当地共享。当一个客户端对象调用一个享元对象的时候，享元工厂角色会检查系统中是否已经有 一个符合要求的享元对象。如果已经有了，享元工厂角色就应当提供这个已有的享元对象；如果系统中没有一个适当的享元对象的话，享元工厂角色就应当创建一个 合适的享元对象。
+(下面的例子外蕴状态可以看做一个点菜的人 内蕴状态可以看做一个菜名,点菜的人一般经常变 但是菜的种类是固定的)
+
+//抽象享元角色类
+public interface Flyweight {
+     //一个示意性方法，参数state是外蕴状态
+    public void operation(String state);
+}
+
+///具体享元角色类
+public class ConcreteFlyweight implements Flyweight {
+    private String intrinsicState = null;//内蕴状态
+    /**
+     * 构造函数，内蕴状态作为参数传入
+     *
+     * @param intrinsicState2
+     */
+    public ConcreteFlyweight(String intrinsicState2) {
+        this.intrinsicState = intrinsicState2;
+    }
+
+    /**
+     * 外蕴状态作为参数传入方法中，改变方法的行为， 但是并不改变对象的内蕴状态。
+     */
+    @Override
+    public void operation(String state) {
+        System.out.println("内蕴状态= " + this.intrinsicState);
+        System.out.println("外蕴状态 = " + state);
+    }
+
+}
+
+//复合享元角色
+public class ConcreteCompositeFlyweight implements Flyweight {
+
+    private Map<String, Flyweight> files = new HashMap<String, Flyweight>();
+
+    /**
+     * 增加一个新的单纯享元对象到聚集中
+     */
+    public void add(String intrinsicState, Flyweight fly) {
+        files.put(intrinsicState, fly);
+    }
+
+    /**
+     * 外蕴状态作为参数传入到方法中
+     */
+    @Override
+    public void operation(String state) {
+        Flyweight fly = null;
+        for (String intrinsicState : files.keySet()) {
+            fly = files.get(intrinsicState);
+            fly.operation(state);
+        }
+
+    }
+
+}
+
+
+//享元工厂角色类
+public class FlyweightFactory {
+    // 一个用来存所有享元对象的集合 String表示对象的键的类型 ->内蕴状态 ;Flyweight表示对象值的类型
+    private Map<String, Flyweight> files = new HashMap<String, Flyweight>();
+
+    /**
+     * 复合享元工厂方法
+     */
+    public Flyweight factory(List<String> compositeState) {
+        ConcreteCompositeFlyweight compositeFly = new ConcreteCompositeFlyweight();
+
+        for (String intrinsicState : compositeState) {
+            compositeFly.add(intrinsicState, this.factory(intrinsicState));
+        }
+
+        return compositeFly;
+    }
+
+    /**
+     * 单纯享元工厂方法
+     */
+    public Flyweight factory(String intrinsicState) {
+        // 先从缓存中查找对象
+        Flyweight fly = files.get(intrinsicState);
+        if (fly == null) {
+            // 如果对象不存在则创建一个新的Flyweight对象
+            fly = new ConcreteFlyweight(intrinsicState);
+            // 把这个新的Flyweight对象添加到缓存中
+            files.put(intrinsicState, fly);
+        }
+        return fly;
+    }
+
+    // 得到存对象的集合的长度
+    public int getFlyWeightSize() {
+        return files.size();
+    }
+
+}
+
+public class Client {
+    public static void main(String[] args) {
+        List<String> compositeState = new ArrayList<String>();
+        compositeState.add("辣椒炒肉");
+        compositeState.add("牛肉");
+        compositeState.add("鸡肉");
+        compositeState.add("辣椒炒肉");
+        compositeState.add("牛肉");
+
+        FlyweightFactory flyFactory = new FlyweightFactory();
+        Flyweight compositeFly1 = flyFactory.factory(compositeState);
+        Flyweight compositeFly2 = flyFactory.factory(compositeState);
+        compositeFly1.operation("汤高点菜");//外蕴状态是同一个
+        System.out.println();
+        compositeFly2.operation("Zhang_Test");
+
+        System.out.println("---------------------------------");
+        System.out.println("复合享元模式是否可以共享对象：" + (compositeFly1 == compositeFly2));
+
+        String state = "牛肉";
+        Flyweight fly1 = flyFactory.factory(state);
+        Flyweight fly2 = flyFactory.factory(state);
+        System.out.println("单纯享元模式是否可以共享对象：" + (fly1 == fly2));
+    }
+
+}
+
+一个复合享元对象的所有单纯享元对象元素的外蕴状态都是与复合享元对象的外蕴状态相等的。即外运状态都等于汤高点菜或者Zhang_Test。
+
+一个复合享元对象所含有的单纯享元对象的内蕴状态一般是不相等的。即内蕴状态分别为各自的菜名。
+复合享元对象是不能共享的。即使用相同的对象compositeState通过工厂分别两次创建出的对象不是同一个对象。
+单纯享元对象是可以共享的。即使用相同的对象state通过工厂分别两次创建出的对象是同一个对象。
+
+四、享元模式的优缺点
+　　享元模式的优点在于它大幅度地降低内存中对象的数量。但是，它做到这一点所付出的代价也是很高的：
+　  享元模式使得系统更加复杂。为了使对象可以共享，需要将一些状态外部化，这使得程序的逻辑复杂化。
+　  享元模式将享元对象的状态外部化，而读取外部状态使得运行时间稍微变长。
+
