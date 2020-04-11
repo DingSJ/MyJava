@@ -19,7 +19,7 @@ public class FlyweightFactory {
         ConcreteCompositeFlyweight compositeFly = new ConcreteCompositeFlyweight();
  
         for (String intrinsicState : compositeState) {
-            compositeFly.add(intrinsicState, this.factory(intrinsicState));
+            compositeFly.add(intrinsicState, this.factory(compositeState));
         }
  
         return compositeFly;
