@@ -1,7 +1,5 @@
 package com.china.thread;
 
-import com.sun.deploy.util.StringUtils;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.concurrent.ArrayBlockingQueue;
