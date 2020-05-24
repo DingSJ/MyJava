@@ -19,7 +19,7 @@ import java.util.stream.Stream;
  *      LongPredict
  *      DoublePredict
  *
- *      test()
+ *      mqtest()
  *      and()
  *      or()
  *      negate()
@@ -43,7 +43,7 @@ public class PredicteTest {
     }
 
     /**
-     * {@link Predicate<>#test()} 用于校验或者过滤数据，单个参数
+     * {@link Predicate<>#mqtest()} 用于校验或者过滤数据，单个参数
      * */
     @Test
     public void testFilter(){
@@ -60,7 +60,7 @@ public class PredicteTest {
         return apps;
     }
     /**
-     * {@link java.util.function.BiPredicate<>#test()} 用于校验或者过滤数据，两个参数
+     * {@link java.util.function.BiPredicate<>#mqtest()} 用于校验或者过滤数据，两个参数
      * */
     @Test
     public void testFilter2(){
@@ -79,7 +79,7 @@ public class PredicteTest {
     }
 
     /**
-     * {@link IntPredicate<>#test()} 用于校验或者过滤数据，一个整型参数
+     * {@link IntPredicate<>#mqtest()} 用于校验或者过滤数据，一个整型参数
      * */
     @Test
     public void testIntPredicted(){
@@ -87,7 +87,7 @@ public class PredicteTest {
         System.out.println(apples);
     }
     /**
-     * {@link IntPredicate<>#test()} 用于校验或者过滤数据，一个整型参数
+     * {@link IntPredicate<>#mqtest()} 用于校验或者过滤数据，一个整型参数
      * */
     @Test
     public void testIntPredicted2(){
@@ -95,7 +95,7 @@ public class PredicteTest {
         System.out.println(apples);
     }
     /**
-     * {@link IntPredicate<>#test()} 用于校验或者过滤数据，一个整型参数
+     * {@link IntPredicate<>#mqtest()} 用于校验或者过滤数据，一个整型参数
      * */
     @Test
     public void testIntPredicted3(){

@@ -79,7 +79,7 @@ public class TradeTest {
         // partitioningBy(Predicate<T>))
         testFun14(transactions);
 
-        // test sum
+        // mqtest sum
         testFun15();
 
     }

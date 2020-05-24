@@ -44,7 +44,7 @@ public class AppleFilterTest {
         testListPredict();
         testListBiPredict();
 
-        System.out.println("test Consumer....");
+        System.out.println("mqtest Consumer....");
         testConsumer();
 
         System.out.println("sort list.....");

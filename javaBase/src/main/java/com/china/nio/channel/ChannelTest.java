@@ -14,7 +14,7 @@ public class ChannelTest {
     @Test
     public void testChannel() throws IOException {
 
-        RandomAccessFile aFile = new RandomAccessFile("E:\\ideaSpace\\MyJava\\javaBase\\src\\main\\java\\com\\china\\nio\\channel\\test.txt", "rw");
+        RandomAccessFile aFile = new RandomAccessFile("E:\\ideaSpace\\MyJava\\javaBase\\src\\main\\java\\com\\china\\nio\\channel\\mqtest.txt", "rw");
         FileChannel inChannel = aFile.getChannel();
         ByteBuffer buf = ByteBuffer.allocate(128);
         int bytesRead = inChannel.read(buf);
@@ -34,7 +34,7 @@ public class ChannelTest {
     @Test
     public void testChannel2() throws IOException {
 
-        String filePath = "E:\\ideaSpace\\MyJava\\javaBase\\src\\main\\java\\com\\china\\nio\\channel\\test.txt";
+        String filePath = "E:\\ideaSpace\\MyJava\\javaBase\\src\\main\\java\\com\\china\\nio\\channel\\mqtest.txt";
         FileInputStream inputStream = new FileInputStream(filePath);
         FileChannel inChannel = inputStream.getChannel();
         ByteBuffer buf = ByteBuffer.allocate(128);
@@ -53,7 +53,7 @@ public class ChannelTest {
     @Test
     public void testChannel3() throws IOException {
 
-        String filePath = "E:\\ideaSpace\\MyJava\\javaBase\\src\\main\\java\\com\\china\\nio\\channel\\test.txt";
+        String filePath = "E:\\ideaSpace\\MyJava\\javaBase\\src\\main\\java\\com\\china\\nio\\channel\\mqtest.txt";
         String newFilePath = "E:\\ideaSpace\\MyJava\\javaBase\\src\\main\\java\\com\\china\\nio\\channel\\test2.txt";
         FileInputStream inputStream = new FileInputStream(filePath);
         FileOutputStream outputStream = new FileOutputStream(newFilePath);
