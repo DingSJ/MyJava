@@ -38,6 +38,7 @@ public class PullConsumer {
         // 启动消费者实例
         consumer.start();
 
+
         // 注册回调实现类来处理从broker拉取回来的消息
         Set<MessageQueue> messageQueues = consumer.fetchSubscribeMessageQueues(MQ_TOPIC);
         for (MessageQueue mq : messageQueues) {
